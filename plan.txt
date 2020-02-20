@@ -1,9 +1,9 @@
 DONE - Make a dice array
-Make a player structure
-Ask how many dice to roll?
-Get each dice to roll 
-Ask for a reroll and reroll specific dice
-Repeat 3, 4 (up to 2 times)
+DONE Ask how many dice to roll?
+DONE Get each dice to roll 
+Done Ask for a reroll and reroll specific dice
 Find scoring options that would work with dice
 Ask which category they would want the dice in
 Record the score, fill the category till the end of the round
+Make a player structure
+
