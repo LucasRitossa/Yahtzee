@@ -7,3 +7,18 @@ Ask which category they would want the dice in
 Record the score, fill the category till the end of the round
 Make a player structure
 
+
+All Scoring Options:
+1s
+2s
+3s
+4s
+5s
+6s
+3 of a kind
+4 of a kind
+full house - 25 points
+sm straight - 30 points
+large straight - 40 points
+YAHTZEE - 50 points
+Chance - Total points of all dice
