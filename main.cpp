@@ -85,39 +85,37 @@ switch(score)
     
  
  
-    for (int i = 1; i <= 6; i++)
+    for (int i = 0; i <= 2; i++)
     {
-      for (int x = 0; x < 4; x++)
+      if(dice[i] == dice[i + 1] && dice[i] == dice[i + 2])
       {
-        if (dice[x] == i)
-        {
-          match++;
-        }
-        if (match == 3)
+        match = 3;
+      }
+        
+      if (match == 3)
         {
           total_score += (dice[2] * 3);
+          break;
         } 
-      }
       match = 0;
     } 
  break;
  case 8: //4 of a kind
  
-    for (int x = 0; x < 4; x++)
+    for (int i = 0; i <= 1; i++)
     {
-      for (int i = 1; i <= 6; i++)
+      if(dice[i] == dice[i + 1] && dice[i] == dice[i + 2] && dice[i] == dice[i+3])
       {
-        if (dice[x] == i)
-        {
-          match++;
-        }
-        if (match == 4)
-        {
-          total_score += (dice[2] * 4);
-        } 
+        match = 3;
       }
+        
+      if (match == 3)
+        {
+          total_score += (dice[2] * 3);
+          break;
+        } 
       match = 0;
-    }
+    } 
     
  break;
  case 9: //Full house
