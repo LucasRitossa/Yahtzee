@@ -106,9 +106,9 @@ switch(score)
       //check 4 in a row(location  based on for loop)
       if(dice[i] == dice[i + 1] && dice[i] == dice[i + 2] && dice[i] == dice[i+3])
       {
-        match = 3;
+        match = 4;
       }  
-      if (match == 3)
+      if (match == 4)
         {
           total_score += (dice[2] * 3);
           break;
@@ -118,7 +118,7 @@ switch(score)
     
  break;
  case 9: //Full house
-
+    
  break;
  case 10: //Small Straight
     //check 4 in a row twice
@@ -264,6 +264,7 @@ do
   cin >> keeping;
   hold(keeping, keep);
   diceRoll(dice, keep); //Dice rolling function
+  selectionSort(dice, 5);
     cout << dice[0] << ", "
          << dice[1] << ", "
          << dice[2] << ", " 
