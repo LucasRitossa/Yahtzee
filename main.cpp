@@ -6,6 +6,15 @@
 
 using namespace std;
 
+void Debug(int dice[])
+{
+  cout << "---debugmode---\n";
+  cin >> dice[0];
+  cin >> dice[1];
+  cin >> dice[2];
+  cin >> dice[3];
+  cin >> dice[4];
+}
 
 void scoring(int dice[], int &total_score)
 {
@@ -88,15 +97,9 @@ switch(score)
       //check for 3 in a row (location based on for loop)
       if(dice[i] == dice[i + 1] && dice[i] == dice[i + 2]) 
       {
-        match = 3;
+        total_score += (dice[2] * 3);
+        break;
       }
-        
-      if (match == 3)
-        {
-          total_score += (dice[2] * 3);
-          break;
-        } 
-      match = 0;
     } 
  break;
  case 8: //4 of a kind (this works now)
@@ -106,41 +109,42 @@ switch(score)
       //check 4 in a row(location  based on for loop)
       if(dice[i] == dice[i + 1] && dice[i] == dice[i + 2] && dice[i] == dice[i+3])
       {
-        match = 4;
+        total_score += (dice[2] * 3);
+        break;
       }  
-      if (match == 4)
-        {
-          total_score += (dice[2] * 3);
-          break;
-        } 
-      match = 0;
     } 
     
  break;
  case 9: //Full house
-    
+    if(dice[0] == dice[1] && dice[2] == dice[4])
+    {
+      total_score += 25;
+    }   
+    if(dice[0] == dice[2] && dice[3] == dice[4])
+    {
+      total_score += 25;
+    }  
  break;
  case 10: //Small Straight
-    //check 4 in a row twice
-    for (int i = 0; i <= 1; i++)
-    { 
-      //check 4 in a row(location  based on for loop)
-      if(dice[i] == dice[i + 1] + 1 && dice[i] == dice[i + 2] + 2 && dice[i] == dice[i+3] + 3)
+ for(int x = 0; x <=1; x++)
+ {
+    for(int i=1; i<=3; i++)//check 4 other dice
+    {
+      if(dice[x] + i == dice[i+x])//check dice in relation to the first (counting up)
       {
-        match = 3;
-      }  
-      if (match == 3)
-        {
-          total_score += (dice[2] * 3);
-          break;
-        } 
-      match = 0;
-    } 
+        match++;
+      }
+    }
+      if(match == 3)//if all 5 in right place then award points
+      {
+        total_score += 30;
+      }
+  } 
  break;
  case 11: //Large Straight
   for(int i=1; i<=4; i++)//check 4 other dice
   {
-    if(dice[0] == dice[0 + i] + i)//check dice in relation to the first (counting up)
+    if(dice[0] + i == dice[i])//check dice in relation to the first (counting up)
     {
       match++;
     }
@@ -155,12 +159,12 @@ switch(score)
  case 12: //Yahtzee
   for(int i=1; i<=4; i++)//check 4 other dice
   {
-    if(dice[0] == dice[0 + i])//check dice in relation to first(without counting up)
+    if(dice[0] == dice[i])//check dice in relation to first(without counting up)
     {
       match++;
     }
   }
-  if(match == 5)//if all 5 were equal award points
+  if(match == 4)//if all 5 were equal award points
   {
     total_score += 50;
   }
@@ -277,6 +281,7 @@ do
 }while(rollCounter <= 2 && finished == "y"); //Reroll Limits
 
 //sort the numbers
+Debug(dice);
 selectionSort(dice, 5);
 cout << dice[0] << ", "
      << dice[1] << ", "

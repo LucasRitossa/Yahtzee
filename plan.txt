@@ -2,8 +2,8 @@ DONE - Make a dice array
 DONE Ask how many dice to roll?
 DONE Get each dice to roll 
 Done Ask for a reroll and reroll specific dice
-Find scoring options that would work with dice
-Ask which category they would want the dice in
+DONE Find scoring options that would work with dice
+DONE Ask which category they would want the dice in
 Record the score, fill the category till the end of the round
 Make a player structure
 
@@ -17,11 +17,11 @@ DONE 5s
 DONE 6s
 DONE 3 of a kind
 DONE 4 of a kind
-full house - 25 points
-sm straight - 30 points
-large straight - 40 points
-YAHTZEE - 50 points
-Chance - Total points of all dice
+DONE full house - 25 points 
+DONE sm straight - 30 points (needs fix)
+DONE large straight - 40 points (needs fix)
+DONE YAHTZEE - 50 points
+DONE Chance - Total points of all dice
 
 
 https://github.com/LucasRitossa/Yahtzee/invitations
