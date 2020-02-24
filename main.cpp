@@ -81,13 +81,12 @@ switch(score)
  
  break;
 
- case 7: //3 of a kind
-    
+ case 7: //3 of a kind (this works now)
  
- 
-    for (int i = 0; i <= 2; i++)
+    for (int i = 0; i <= 2; i++)//check for 3 in a row 3 times
     {
-      if(dice[i] == dice[i + 1] && dice[i] == dice[i + 2])
+      //check for 3 in a row (location based on for loop)
+      if(dice[i] == dice[i + 1] && dice[i] == dice[i + 2]) 
       {
         match = 3;
       }
@@ -100,15 +99,15 @@ switch(score)
       match = 0;
     } 
  break;
- case 8: //4 of a kind
- 
+ case 8: //4 of a kind (this works now)
+    //check 4 in a row twice
     for (int i = 0; i <= 1; i++)
-    {
+    { 
+      //check 4 in a row(location  based on for loop)
       if(dice[i] == dice[i + 1] && dice[i] == dice[i + 2] && dice[i] == dice[i+3])
       {
         match = 3;
-      }
-        
+      }  
       if (match == 3)
         {
           total_score += (dice[2] * 3);
@@ -122,30 +121,64 @@ switch(score)
 
  break;
  case 10: //Small Straight
-
+    //check 4 in a row twice
+    for (int i = 0; i <= 1; i++)
+    { 
+      //check 4 in a row(location  based on for loop)
+      if(dice[i] == dice[i + 1] + 1 && dice[i] == dice[i + 2] + 2 && dice[i] == dice[i+3] + 3)
+      {
+        match = 3;
+      }  
+      if (match == 3)
+        {
+          total_score += (dice[2] * 3);
+          break;
+        } 
+      match = 0;
+    } 
  break;
  case 11: //Large Straight
+  for(int i=1; i<=4; i++)//check 4 other dice
+  {
+    if(dice[0] == dice[0 + i] + i)//check dice in relation to the first (counting up)
+    {
+      match++;
+    }
+  }
+  if(match == 4)//if all 5 in right place then award points
+  {
+    total_score += 40;
+  }
+
 
  break;
  case 12: //Yahtzee
-
+  for(int i=1; i<=4; i++)//check 4 other dice
+  {
+    if(dice[0] == dice[0 + i])//check dice in relation to first(without counting up)
+    {
+      match++;
+    }
+  }
+  if(match == 5)//if all 5 were equal award points
+  {
+    total_score += 50;
+  }
  break;
  case 13: //Chance
-
+  for(int i = 0; i <= 4;i++) //add up all dice
+  {
+    total_score += dice[i];
+  } 
  break;
 default:
 
-  cout <<"You play Roblox \n";
+  cout <<"thats not a catigory you can score in\n";
 }
 
 cout <<"Your score is " << total_score << endl;
 
 }
-
-
-
-
-
 
 
 void diceRoll(int dice[], bool keep[])
@@ -207,14 +240,6 @@ void selectionSort(int arr[], int n)
     }  
 }  
 
-
-
-
-
-
-
-
-
 int main() {
   //Randomizing via time 
   srand(time(NULL));
@@ -224,7 +249,6 @@ int main() {
   int keeping;  //How many dice user wants to keep
   int rollCounter = 0;  //How many times the user has rolled dice
   string finished; //If the user is muy contento with his rolls before 3 rolls
-  
 
   diceRoll(dice, keep); //Dice rolling function
   cout << dice[0] << ", "
@@ -245,8 +269,8 @@ do
          << dice[2] << ", " 
          << dice[3] << ", " 
          << dice[4] << endl;
-  rollCounter ++;
 
+  rollCounter ++;
   cout <<"Do you want to reroll any other dice? (Type: 'n', 'y') \n";
   cin >> finished;
 }while(rollCounter <= 2 && finished == "y"); //Reroll Limits
@@ -258,9 +282,6 @@ cout << dice[0] << ", "
      << dice[2] << ", " 
      << dice[3] << ", " 
      << dice[4] << endl;
-
 scoring(dice, total_score);
-
-
 return 0;  
 }
