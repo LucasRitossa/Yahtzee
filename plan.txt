@@ -23,5 +23,12 @@ DONE large straight - 40 points (needs fix)
 DONE YAHTZEE - 50 points
 DONE Chance - Total points of all dice
 
+Polishing the Game:
+Make the run as long as necessary
+    All scoring slots are filled
+    If no slots can be filled, put a 0 in the slot.
+Ask them if they would like to continue
+Reset Option
+
 
 https://github.com/LucasRitossa/Yahtzee/invitations

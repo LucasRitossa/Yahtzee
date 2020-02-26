@@ -44,7 +44,8 @@ void scoringMenu()
        <<"10 - Small Straight \n"
        <<"11 - Large Straight \n"
        <<"12 - Yahtzee \n"
-       <<"13 - Chance \n";
+       <<"13 - Chance \n"
+       << "Input: ";
 }
 
 
@@ -75,8 +76,9 @@ switch(score)
  case 6: //6s
     total_score += addScore(dice, 6);
  break;
- case 7: //3 of a kind (this works now)
- for (int i = 0; i <= 2; i++)//check for 3 in a row 3 times
+ case 7: //3 of a kind
+ //check for 3 in a row 3 times
+ for (int i = 0; i <= 2; i++)
     {
       //check for 3 in a row (location based on for loop)
       if(dice[i] == dice[i + 1] && dice[i] == dice[i + 2]) 
@@ -86,14 +88,14 @@ switch(score)
       }
     } 
  break;
- case 8: //4 of a kind (this works now)
+ case 8: //4 of a kind
     //check 4 in a row twice
     for (int i = 0; i <= 1; i++)
     { 
       //check 4 in a row(location  based on for loop)
       if(dice[i] == dice[i + 1] && dice[i] == dice[i + 2] && dice[i] == dice[i+3])
       {
-        total_score += (dice[2] * 3);
+        total_score += (dice[2] * 4);
         break;
       }  
     } 
@@ -123,7 +125,7 @@ switch(score)
       {
         total_score += 30;
       }
-    } 
+  } 
  break;
  case 11: //Large Straight
   for(int i=1; i<=4; i++)//check 4 other dice
@@ -163,9 +165,7 @@ default:
 
   cout <<"That's not a category you can score in\n";
 }
-
-cout <<"SCORE: " << total_score << endl;
-
+  cout <<"SCORE: " << total_score << endl;
 }
 
 
@@ -174,19 +174,16 @@ void diceRoll(int dice[], bool keep[])
   //loops through 5 dice
   for(int x = 0; x <= 4; x++)
   {
-    
     if(keep[x] == false)
     {
       //randomizing set die from loop
       dice[x] = rand() % 6 + 1;
     }
   }
-
   for(int x = 0; x <= 4; x++)// line dedicated to clearing keep
   {
     keep[x] = false;
   }
-  
 }
 
 void hold(int keeping, bool keep[])
@@ -201,7 +198,7 @@ void hold(int keeping, bool keep[])
     keep[temp - 1] = true;
   }
 }
-//used 2 swap 2 posiotions in an array
+//used 2 swap 2 positions in an array
 void swap(int *xp, int *yp)  
 {  
     int temp = *xp;  
@@ -211,8 +208,7 @@ void swap(int *xp, int *yp)
 //overall sorting fuction
 void selectionSort(int arr[], int n)  
 {  
-    int min_idx;  
-  
+    int min_idx;                      
     // One by one move boundary of unsorted subarray  
     for (int i = 0; i < n-1; i++)  
     {  
@@ -265,7 +261,6 @@ do
 }while(rollCounter <= 2 && finished == "y"); //Reroll Limits
 
 //Sort the numbers
-Debug(dice);
 selectionSort(dice, 5);
 cout << dice[0] << ", "
      << dice[1] << ", "
@@ -276,3 +271,17 @@ scoringMenu();
 scoring(dice, total_score);
 return 0;  
 }
+
+
+
+
+
+
+
+//██╗  ░██████╗░░█████╗░████████╗  ██████╗░██╗░██████╗░  ██████╗░██████╗░
+//██║  ██╔════╝░██╔══██╗╚══██╔══╝  ██╔══██╗██║██╔════╝░  ██╔══██╗██╔══██╗
+//██║  ██║░░██╗░██║░░██║░░░██║░░░  ██████╦╝██║██║░░██╗░  ██████╔╝██████╔╝
+//██║  ██║░░╚██╗██║░░██║░░░██║░░░  ██╔══██╗██║██║░░╚██╗  ██╔═══╝░██╔═══╝░
+//██║  ╚██████╔╝╚█████╔╝░░░██║░░░  ██████╦╝██║╚██████╔╝  ██║░░░░░██║░░░░░
+//╚═╝  ░╚═════╝░░╚════╝░░░░╚═╝░░░  ╚═════╝░╚═╝░╚═════╝░  ╚═╝░░░░░╚═╝░░░░░
+//me gusta muy grande pene
