@@ -16,6 +16,21 @@ void Debug(int dice[])
   cin >> dice[4];
 }
 
+int addScore(int dice[], int num)
+{
+  int temp;
+  for(int x = 0; x <= 4; x++)
+    {
+      if(dice[x] == 1)
+      {
+        temp += num; 
+      }
+        
+    }
+  return temp;
+}
+
+
 void scoring(int dice[], int &total_score)
 {
   int match = 0;
@@ -25,69 +40,22 @@ void scoring(int dice[], int &total_score)
 switch(score)
 {
   case 1: //1s
-    for(int x = 0; x < 4; x++)
-    {
-      if(dice[x] == 1)
-      {
-        total_score += 1; 
-      }
-        
-    }
+    total_score += addScore(dice, 1);
  break;
  case 2: //2s
- 
-  for (int x = 0; x < 4; x++)
-  {
-     if(dice[x] == 2)
-     {
-        total_score += 2;  
-     }  
-  }
-
+    total_score += addScore(dice, 2);
  break;
  case 3: //3s
-
-   for (int x = 0; x < 4; x++)
-   {
-      if(dice[x] == 3)
-      {
-         total_score += 3;  
-      }  
-   } 
-
+    total_score += addScore(dice, 3);
  break;
  case 4: //4s
-
-   for (int x = 0; x < 4; x++)
-   {
-      if(dice[x] == 4)
-      {
-         total_score += 4;  
-      }  
-   } 
- 
+    total_score += addScore(dice, 4);
  break;
  case 5: //5s
-
-   for (int x = 0; x < 4; x++)
-   {
-      if(dice[x] == 5)
-      {
-         total_score += 5;  
-      }  
-   }
- 
+    total_score += addScore(dice, 5);
  break;
  case 6: //6s
-
-    for (int x = 0; x < 4; x++)
-    {
-      if(dice[x] == 6)
-      {
-         total_score += 6;  
-      }  
-    }
- 
+    total_score += addScore(dice, 1);
  break;
 
  case 7: //3 of a kind (this works now)
@@ -126,8 +94,8 @@ switch(score)
     }  
  break;
  case 10: //Small Straight
- for(int x = 0; x <=1; x++)
- {
+  for(int x = 0; x <=1; x++)
+  {
     for(int i=1; i<=3; i++)//check 4 other dice
     {
       if(dice[x] + i == dice[i+x])//check dice in relation to the first (counting up)
@@ -139,7 +107,7 @@ switch(score)
       {
         total_score += 30;
       }
-  } 
+    } 
  break;
  case 11: //Large Straight
   for(int i=1; i<=4; i++)//check 4 other dice
@@ -177,10 +145,10 @@ switch(score)
  break;
 default:
 
-  cout <<"thats not a catigory you can score in\n";
+  cout <<"That's not a category you can score in\n";
 }
 
-cout <<"Your score is " << total_score << endl;
+cout <<"SCORE: " << total_score << endl;
 
 }
 
