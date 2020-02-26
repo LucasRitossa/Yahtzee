@@ -16,19 +16,37 @@ void Debug(int dice[])
   cin >> dice[4];
 }
 
-int addScore(int dice[], int num)
+int addScore(int dice[], int num)//adds score
 {
   int temp;
-  for(int x = 0; x <= 4; x++)
+  for(int x = 0; x <= 4; x++)//check all dice
     {
-      if(dice[x] == 1)
+      if(dice[x] == num) //check dice based on # 
       {
-        temp += num; 
-      }
-        
+        temp += num; //addbased on # 
+      }  
     }
   return temp;
 }
+
+void scoringMenu()
+{
+  cout <<"Type in the number that coorelates with the scoring option you want. \n";
+  cout <<"1 - Ones \n"
+       <<"2 - Twos \n"
+       <<"3 - Threes \n"
+       <<"4 - Fours \n"
+       <<"5 - Fives \n"
+       <<"6 - Sixes \n"
+       <<"7 - Three of a Kind \n"
+       <<"8 - Four of a Kind \n"
+       <<"9 - Full House \n"
+       <<"10 - Small Straight \n"
+       <<"11 - Large Straight \n"
+       <<"12 - Yahtzee \n"
+       <<"13 - Chance \n";
+}
+
 
 
 void scoring(int dice[], int &total_score)
@@ -55,12 +73,10 @@ switch(score)
     total_score += addScore(dice, 5);
  break;
  case 6: //6s
-    total_score += addScore(dice, 1);
+    total_score += addScore(dice, 6);
  break;
-
  case 7: //3 of a kind (this works now)
- 
-    for (int i = 0; i <= 2; i++)//check for 3 in a row 3 times
+ for (int i = 0; i <= 2; i++)//check for 3 in a row 3 times
     {
       //check for 3 in a row (location based on for loop)
       if(dice[i] == dice[i + 1] && dice[i] == dice[i + 2]) 
@@ -248,7 +264,7 @@ do
   cin >> finished;
 }while(rollCounter <= 2 && finished == "y"); //Reroll Limits
 
-//sort the numbers
+//Sort the numbers
 Debug(dice);
 selectionSort(dice, 5);
 cout << dice[0] << ", "
@@ -256,6 +272,7 @@ cout << dice[0] << ", "
      << dice[2] << ", " 
      << dice[3] << ", " 
      << dice[4] << endl;
+scoringMenu();
 scoring(dice, total_score);
 return 0;  
 }
