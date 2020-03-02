@@ -358,4 +358,7 @@ return 0;
 //░░████░░░░██████████████░░░░████
 //░░░░░░████░░░░░░░░░░░░░░████
 //░░░░░░░░░░██████████████ 
-//me warshipo los sansos un body
+//adoro el cuerpo de sans
+//أنا أحب سيدنا والقائد المقدس ، sans
+//Heil Sans
+//s-s-s sans-senpai OwO *nuzzels sans*
