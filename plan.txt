@@ -25,8 +25,7 @@ DONE Chance - Total points of all dice
 
 Polishing the Game:
 Make the run as long as necessary
-    All scoring slots are filled
-    If no slots can be filled, put a 0 in the slot.
+    DONE If all scoring slots are filled
 Ask them if they would like to continue
 Reset Option
 

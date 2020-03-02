@@ -54,30 +54,57 @@ void scoring(int dice[], int &total_score)
 {
   int match = 0;
   int score;
+
+  bool categories[13];
+  for (int x = 0; x <=12; x++)
+  {
+    categories[x] = false;
+  }
+  
   cin >> score;
 //let user decide which place they want the dice
 switch(score)
 {
   case 1: //1s
-    total_score += addScore(dice, 1);
+    if (!categories[0]){
+      total_score += addScore(dice, 1);
+      categories[0] = true;
+    }
  break;
  case 2: //2s
-    total_score += addScore(dice, 2);
+    if (!categories[1]){
+      total_score += addScore(dice, 2);
+      categories[1] = true;
+    }
  break;
  case 3: //3s
-    total_score += addScore(dice, 3);
+    if (!categories[2]){
+      total_score += addScore(dice, 3);
+      categories[2] = true;
+    }
  break;
  case 4: //4s
-    total_score += addScore(dice, 4);
+    if (!categories[3]){
+      total_score += addScore(dice, 4);
+      categories[3] = true;
+    }
  break;
  case 5: //5s
-    total_score += addScore(dice, 5);
+    if (!categories[4]){
+      total_score += addScore(dice, 5);
+      categories[4] = true;
+    }
  break;
  case 6: //6s
+ if (!categories[5]){
     total_score += addScore(dice, 6);
+    categories[5] = true;
+ }
  break;
+
  case 7: //3 of a kind
  //check for 3 in a row 3 times
+ if (!categories[6]){
  for (int i = 0; i <= 2; i++)
     {
       //check for 3 in a row (location based on for loop)
@@ -87,31 +114,43 @@ switch(score)
         break;
       }
     } 
+    categories[6] = true;
+ }
  break;
  case 8: //4 of a kind
     //check 4 in a row twice
+  if (!categories[7]){
     for (int i = 0; i <= 1; i++)
     { 
-      //check 4 in a row(location  based on for loop)
+      //checks first 4, pushes die index once, checks last 4
       if(dice[i] == dice[i + 1] && dice[i] == dice[i + 2] && dice[i] == dice[i+3])
       {
         total_score += (dice[2] * 4);
         break;
       }  
-    } 
+    }
+    categories[7] = true;
+  } 
     
  break;
+ 
  case 9: //Full house
+    //checks if first and second eua;, then 3, and 5th, dont need to check 4th because it's sorted, (yyxxx)
+  if (!categories[8]){
     if(dice[0] == dice[1] && dice[2] == dice[4])
     {
       total_score += 25;
     }   
+    //same as before, flips checking side
     if(dice[0] == dice[2] && dice[3] == dice[4])
     {
       total_score += 25;
-    }  
+    }
+    categories[8] = true;   
+  }
  break;
  case 10: //Small Straight
+ if (!categories[9]){
   for(int x = 0; x <=1; x++)
   {
     for(int i=1; i<=3; i++)//check 4 other dice
@@ -125,9 +164,13 @@ switch(score)
       {
         total_score += 30;
       }
-  } 
+      
+  }
+  categories[9] = true;
+ } 
  break;
  case 11: //Large Straight
+ if (!categories[10]){
   for(int i=1; i<=4; i++)//check 4 other dice
   {
     if(dice[0] + i == dice[i])//check dice in relation to the first (counting up)
@@ -139,10 +182,12 @@ switch(score)
   {
     total_score += 40;
   }
-
+  categories[10] = true;
+ }
 
  break;
  case 12: //Yahtzee
+ if (!categories[11]){
   for(int i=1; i<=4; i++)//check 4 other dice
   {
     if(dice[0] == dice[i])//check dice in relation to first(without counting up)
@@ -154,18 +199,23 @@ switch(score)
   {
     total_score += 50;
   }
+  categories[11] = true;
+ }
  break;
+ 
  case 13: //Chance
+ if (!categories[12]){
   for(int i = 0; i <= 4;i++) //add up all dice
   {
     total_score += dice[i];
-  } 
+  }
+  categories[12] = true; 
+ }
  break;
 default:
-
   cout <<"That's not a category you can score in\n";
 }
-  cout <<"SCORE: " << total_score << endl;
+  cout <<"SCORE: " << total_score << endl << endl;
 }
 
 
@@ -233,7 +283,10 @@ int main() {
   int keeping;  //How many dice user wants to keep
   int rollCounter = 0;  //How many times the user has rolled dice
   string finished; //If the user is muy contento with his rolls before 3 rolls
+  int slotCounter = 0; //Counts how many times you've played one round of Yahtzee
 
+do
+{
   diceRoll(dice, keep); //Dice rolling function
   cout << dice[0] << ", "
        << dice[1] << ", "
@@ -242,33 +295,38 @@ int main() {
        << dice[4] << endl;
 
 //Asking how many dice the user wants to keep
-do
-{
-  cout << "how many dice do you want to keep(1-5)\n";
-  cin >> keeping;
-  hold(keeping, keep);
-  diceRoll(dice, keep); //Dice rolling function
-  selectionSort(dice, 5);
+
+  do
+  {
+    cout << "how many dice do you want to keep(1-5)\n";
+    cin >> keeping;
+    hold(keeping, keep);
+    diceRoll(dice, keep); //Dice rolling function
+    selectionSort(dice, 5);
     cout << dice[0] << ", "
          << dice[1] << ", "
          << dice[2] << ", " 
          << dice[3] << ", " 
          << dice[4] << endl;
 
-  rollCounter ++;
-  cout <<"Do you want to reroll any other dice? (Type: 'n', 'y') \n";
-  cin >> finished;
-}while(rollCounter <= 2 && finished == "y"); //Reroll Limits
+    rollCounter ++;
+    cout <<"Do you want to reroll any other dice? (Type: 'n', 'y') \n";
+    cin >> finished;
+  }while(rollCounter <= 2 && finished == "y"); //Reroll Limits
 
-//Sort the numbers
-selectionSort(dice, 5);
-cout << dice[0] << ", "
-     << dice[1] << ", "
-     << dice[2] << ", " 
-     << dice[3] << ", " 
-     << dice[4] << endl;
-scoringMenu();
-scoring(dice, total_score);
+  //Sort the numbers
+  selectionSort(dice, 5);
+  cout << dice[0] << ", "
+       << dice[1] << ", "
+       << dice[2] << ", " 
+       << dice[3] << ", " 
+       << dice[4] << endl;
+  scoringMenu();
+  scoring(dice, total_score);
+  slotCounter ++;
+}while(slotCounter < 13);
+
+
 return 0;  
 }
 
@@ -284,4 +342,20 @@ return 0;
 //██║  ██║░░╚██╗██║░░██║░░░██║░░░  ██╔══██╗██║██║░░╚██╗  ██╔═══╝░██╔═══╝░
 //██║  ╚██████╔╝╚█████╔╝░░░██║░░░  ██████╦╝██║╚██████╔╝  ██║░░░░░██║░░░░░
 //╚═╝  ░╚═════╝░░╚════╝░░░░╚═╝░░░  ╚═════╝░╚═╝░╚═════╝░  ╚═╝░░░░░╚═╝░░░░░
-//me gusta muy grande pene
+//me gusta muy grande pene de sans
+//░░░░░░░░██████████████████
+//░░░░████░░░░░░░░░░░░░░░░░░████
+//░░██░░░░░░░░░░░░░░░░░░░░░░░░░░██
+//░░██░░░░░░░░░░░░░░░░░░░░░░░░░░██
+//██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░██
+//██░░░░░░░░░░░░░░░░░░░░██████░░░░██
+//██░░░░░░░░░░░░░░░░░░░░██████░░░░██
+//██░░░░██████░░░░██░░░░██████░░░░██
+//░░██░░░░░░░░░░██████░░░░░░░░░░██
+//████░░██░░░░░░░░░░░░░░░░░░██░░████
+//██░░░░██████████████████████░░░░██
+//██░░░░░░██░░██░░██░░██░░██░░░░░░██
+//░░████░░░░██████████████░░░░████
+//░░░░░░████░░░░░░░░░░░░░░████
+//░░░░░░░░░░██████████████ 
+//me warshipo los sansos un body
