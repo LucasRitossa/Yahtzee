@@ -48,63 +48,52 @@ void scoringMenu()
        << "Input: ";
 }
 
-
-
-void scoring(int dice[], int &total_score)
+void scoring(int dice[], int &total_score, int slotCounter)
 {
+  bool isUsed[13];
   int match = 0;
   int score;
 
-  bool categories[13];
-  for (int x = 0; x <=12; x++)
-  {
-    categories[x] = false;
+  if (slotCounter == 0){
+    for (int x = 0; x <=12; x++){
+      isUsed[x] = false;
+    }
   }
-  
+  do{
   cin >> score;
+  
+  if(isUsed[score] == true){
+    cout<<"Score already used, please try again! \n";
+  }
+
+  }while(isUsed[score] == true);
+  
+  isUsed[score] = true;
+  
 //let user decide which place they want the dice
 switch(score)
 {
   case 1: //1s
-    if (!categories[0]){
-      total_score += addScore(dice, 1);
-      categories[0] = true;
-    }
+      total_score += addScore(dice, 1);  
  break;
  case 2: //2s
-    if (!categories[1]){
       total_score += addScore(dice, 2);
-      categories[1] = true;
-    }
  break;
  case 3: //3s
-    if (!categories[2]){
       total_score += addScore(dice, 3);
-      categories[2] = true;
-    }
  break;
  case 4: //4s
-    if (!categories[3]){
       total_score += addScore(dice, 4);
-      categories[3] = true;
-    }
  break;
  case 5: //5s
-    if (!categories[4]){
       total_score += addScore(dice, 5);
-      categories[4] = true;
-    }
  break;
  case 6: //6s
- if (!categories[5]){
     total_score += addScore(dice, 6);
-    categories[5] = true;
- }
  break;
 
  case 7: //3 of a kind
  //check for 3 in a row 3 times
- if (!categories[6]){
  for (int i = 0; i <= 2; i++)
     {
       //check for 3 in a row (location based on for loop)
@@ -114,12 +103,9 @@ switch(score)
         break;
       }
     } 
-    categories[6] = true;
- }
  break;
  case 8: //4 of a kind
     //check 4 in a row twice
-  if (!categories[7]){
     for (int i = 0; i <= 1; i++)
     { 
       //checks first 4, pushes die index once, checks last 4
@@ -129,14 +115,11 @@ switch(score)
         break;
       }  
     }
-    categories[7] = true;
-  } 
     
  break;
  
  case 9: //Full house
     //checks if first and second eua;, then 3, and 5th, dont need to check 4th because it's sorted, (yyxxx)
-  if (!categories[8]){
     if(dice[0] == dice[1] && dice[2] == dice[4])
     {
       total_score += 25;
@@ -146,11 +129,8 @@ switch(score)
     {
       total_score += 25;
     }
-    categories[8] = true;   
-  }
  break;
  case 10: //Small Straight
- if (!categories[9]){
   for(int x = 0; x <=1; x++)
   {
     for(int i=1; i<=3; i++)//check 4 other dice
@@ -166,11 +146,8 @@ switch(score)
       }
       
   }
-  categories[9] = true;
- } 
  break;
  case 11: //Large Straight
- if (!categories[10]){
   for(int i=1; i<=4; i++)//check 4 other dice
   {
     if(dice[0] + i == dice[i])//check dice in relation to the first (counting up)
@@ -182,12 +159,9 @@ switch(score)
   {
     total_score += 40;
   }
-  categories[10] = true;
- }
 
  break;
  case 12: //Yahtzee
- if (!categories[11]){
   for(int i=1; i<=4; i++)//check 4 other dice
   {
     if(dice[0] == dice[i])//check dice in relation to first(without counting up)
@@ -199,18 +173,13 @@ switch(score)
   {
     total_score += 50;
   }
-  categories[11] = true;
- }
  break;
  
  case 13: //Chance
- if (!categories[12]){
   for(int i = 0; i <= 4;i++) //add up all dice
   {
     total_score += dice[i];
   }
-  categories[12] = true; 
- }
  break;
 default:
   cout <<"That's not a category you can score in\n";
@@ -284,7 +253,6 @@ int main() {
   int rollCounter = 0;  //How many times the user has rolled dice
   string finished; //If the user is muy contento with his rolls before 3 rolls
   int slotCounter = 0; //Counts how many times you've played one round of Yahtzee
-
 do
 {
   diceRoll(dice, keep); //Dice rolling function
@@ -322,7 +290,7 @@ do
        << dice[3] << ", " 
        << dice[4] << endl;
   scoringMenu();
-  scoring(dice, total_score);
+  scoring(dice, total_score, slotCounter);
   slotCounter ++;
 }while(slotCounter < 13);
 
