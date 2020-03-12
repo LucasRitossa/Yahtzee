@@ -1,33 +1,3 @@
-DONE - Make a dice array
-DONE Ask how many dice to roll?
-DONE Get each dice to roll 
-Done Ask for a reroll and reroll specific dice
-DONE Find scoring options that would work with dice
-DONE Ask which category they would want the dice in
-Record the score, fill the category till the end of the round
-Make a player structure
+BATTLEPLAN.EXE 
 
-
-All Scoring Options:
-DONE 1s
-DONE 2s
-DONE 3s
-DONE 4s
-DONE 5s
-DONE 6s
-DONE 3 of a kind
-DONE 4 of a kind
-DONE full house - 25 points 
-DONE sm straight - 30 points (needs fix)
-DONE large straight - 40 points (needs fix)
-DONE YAHTZEE - 50 points
-DONE Chance - Total points of all dice
-
-Polishing the Game:
-Make the run as long as necessary
-    DONE If all scoring slots are filled
-Ask them if they would like to continue
-Reset Option
-
-
-https://github.com/LucasRitossa/Yahtzee/invitations
+!!!!!!!!!!!MAKE PLAYERS TAKE TURNS!!!!!!!!!!!!!!!
